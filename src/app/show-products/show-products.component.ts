@@ -9,24 +9,19 @@ import { ProductsService } from '../products.service';
 })
 export class ShowProductsComponent implements OnInit {
   products: Product[] = [];
-  sum = 0;
+  productSum = 0;
   companyData: any;
 
   constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
-    this.getData()
-    console.log('init');
+    this.getData();
     this.products = this.productsService.getProducts();
-    this.sum = this.productsService.getSum(this.products);
+    this.productSum = this.productsService.getSum(this.products);
   }
 
   private getData() {
-    this.productsService.getData().subscribe(
-      (data) => { this.companyData = data
-      console.log(this.companyData.name)
-    })
-
-
-  }
+    this.productsService.getData()
+    .subscribe(data => this.companyData = data)
+  };
 }

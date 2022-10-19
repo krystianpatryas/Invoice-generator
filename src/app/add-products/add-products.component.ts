@@ -10,44 +10,40 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./add-products.component.css'],
 })
 export class AddProductsComponent implements OnInit{
-  @ViewChild('listForm', { static: false }) signupForm: NgForm;
+  @ViewChild('listForm', { static: false }) listForm: NgForm;
+  product: Product;
   products: Product[] = [];
-  submitted = false;
-  status = false;
+  // submitted = false;
+  nameStatus = false;
 
   constructor(private productsService: ProductsService, private router: Router) {}
 
   ngOnInit() {
     this.products = this.productsService.getProducts();
+
   }
-
-
-  product: Product;
 
   submit(form: NgForm) {
-    const name = this.signupForm.value.name;
-    const count = this.signupForm.value.count;
-    const price = this.signupForm.value.price;
-
+    const name = this.listForm.value.name;
+    const count = this.listForm.value.count;
+    const price = this.listForm.value.price;
+    const productData = {name, count, price};
     const productFields = [name, count, price];
 
-    if (productFields.filter((productField) => !!productField)) {
-      console.log('dupa');
+    if(productFields.every(productField => !productField)) {
+      return alert('Please add items')
     }
 
-    if (!name && !count && !price) {
-      alert('Please add items');
-      return;
+    if (name.length < 3 || name.length > 30) {
+      this.nameStatus = true; console.log(this.nameStatus)
     }
 
-    this.submitted = true;
-    this.productsService.add({ name, count, price }); // add
-    // this.products.push({ name, count, price });
-    this.router.navigate(['/show-products'])
-
+    this.productsService.addProduct(productData);
+    this.router.navigate(['/show-products']);
+    // this.submitted = !this.submitted;
   }
 
-  delete(index: number) {
+  deleteProduct(index: number) {
     this.products.splice(index, 1);
   }
 }

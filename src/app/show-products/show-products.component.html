@@ -1,11 +1,11 @@
-<div class="container mt-5">
+<div class="container mt-4">
 <div class="row">
   <div class="col-xs-10 ">
     <p> {{ companyData.name }}</p>
     <p> {{ companyData.address }}</p>
     <p> {{ companyData.phones }}</p>
     <hr>
-    <h2 *ngIf="products.length === 0">No items</h2>
+    <h4 *ngIf="products.length === 0">No items</h4>
   </div>
 </div>
   <div class="row">
@@ -17,7 +17,7 @@
       </ul>
       <div *ngIf="products.length > 0">
         <hr>
-        <p > Total: {{ sum }}</p>
+        <p > Total: {{ productSum }}</p>
       </div>
   </div>
 </div>

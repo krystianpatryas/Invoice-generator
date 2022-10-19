@@ -17,25 +17,19 @@ export class ProductsService {
     return this.products;
   }
 
-  getProduct(name: string) {
-    return this.products.filter((product) => product.name === name);
-  }
-
-  add(product: Product) {
+  addProduct(product: Product) {
     this.products.push(product);
   }
 
   getSum(products: Product[]): number {
-    let sum = 0;
+    let productSum = 0;
     products.forEach((product) => {
-      sum += (product.price * product.count);
+      productSum += (product.price * product.count);
     });
-
-    return sum;
+    return productSum;
   }
 
   public getData(): Observable<CompanyData> {
     return this.http.get<CompanyData>(url)
-
   }
 }
