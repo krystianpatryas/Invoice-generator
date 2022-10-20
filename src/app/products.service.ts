@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product.model';
 import { HttpClient } from '@angular/common/http';
-import { url } from './globals/database-url.component';
+import { url } from './globals/database-url';
 import { CompanyData } from './models/companyData';
 import { Observable } from 'rxjs';
 
@@ -13,23 +13,25 @@ export class ProductsService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts() {
+  getProducts(): Product[] {
     return this.products;
   }
 
-  addProduct(product: Product) {
+  addProduct(product: Product): void {
     this.products.push(product);
   }
 
   getSum(products: Product[]): number {
     let productSum = 0;
+
     products.forEach((product) => {
-      productSum += (product.price * product.count);
+      productSum += product.price * product.count;
     });
+
     return productSum;
   }
 
   public getData(): Observable<CompanyData> {
-    return this.http.get<CompanyData>(url)
+    return this.http.get<CompanyData>(url);
   }
 }

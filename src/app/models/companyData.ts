@@ -1,6 +1,5 @@
 export interface CompanyData {
-    "name": string;
-    "address": string;
-    "phones": string[];
-
+  name: string;
+  address: string;
+  phones: string[];
 }

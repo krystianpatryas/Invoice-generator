@@ -1,13 +1,15 @@
 <div class="container mt-4">
-<div class="row">
-  <div class="col-xs-10 ">
-    <p> {{ companyData.name }}</p>
-    <p> {{ companyData.address }}</p>
-    <p> {{ companyData.phones }}</p>
-    <hr>
-    <h4 *ngIf="products.length === 0">No items</h4>
+  <div class="row">
+    <div class="col-xs-10">
+      <ng-container *ngIf="companyData">
+        <p>{{ companyData.name }}</p>
+        <p>{{ companyData.address }}</p>
+        <p>{{ companyData.phones }}</p>
+      </ng-container>
+      <hr>
+      <h4 *ngIf="products.length === 0">No items</h4>
+    </div>
   </div>
-</div>
   <div class="row">
     <div class="col-xs-10">
       <ul class="list-group">
@@ -17,7 +19,7 @@
       </ul>
       <div *ngIf="products.length > 0">
         <hr>
-        <p > Total: {{ productSum }}</p>
+        <p> Total: {{ productSum }}</p>
       </div>
+    </div>
   </div>
-</div>
