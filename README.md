@@ -1,4 +1,4 @@
-Exercise got from hiring company - had to write an app 
+Exercise  from hiring company - had to write an app 
 
 Instruction:
 
